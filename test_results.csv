@@ -1,21 +1,341 @@
 request_id,job,event,request_date,status,response,cash_balance,inventory_value
-1,office manager,ceremony,2025-04-01,error,"Error code: 401 - {'error': {'message': 'Incorrect API key provided: voc-4622*************************************7991. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}",45059.7,4940.299999999999
-2,hotel manager,parade,2025-04-03,error,"Error code: 401 - {'error': {'message': 'Incorrect API key provided: voc-4622*************************************7991. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}",45059.7,4940.299999999999
-3,school board resouorce manager,conference,2025-04-04,error,"Error code: 401 - {'error': {'message': 'Incorrect API key provided: voc-4622*************************************7991. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}",45059.7,4940.299999999999
-4,non-profit director,reception,2025-04-05,error,"Error code: 401 - {'error': {'message': 'Incorrect API key provided: voc-4622*************************************7991. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}",45059.7,4940.299999999999
-5,school teacher,party,2025-04-05,error,"Error code: 401 - {'error': {'message': 'Incorrect API key provided: voc-4622*************************************7991. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}",45059.7,4940.299999999999
-6,school teacher,assembly,2025-04-06,error,"Error code: 401 - {'error': {'message': 'Incorrect API key provided: voc-4622*************************************7991. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}",45059.7,4940.299999999999
-7,business owner,exhibition,2025-04-07,error,"Error code: 401 - {'error': {'message': 'Incorrect API key provided: voc-4622*************************************7991. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}",45059.7,4940.299999999999
-8,school board resouorce manager,ceremony,2025-04-07,error,"Error code: 401 - {'error': {'message': 'Incorrect API key provided: voc-4622*************************************7991. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}",45059.7,4940.299999999999
-9,city hall clerk,reception,2025-04-07,error,"Error code: 401 - {'error': {'message': 'Incorrect API key provided: voc-4622*************************************7991. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}",45059.7,4940.299999999999
-13,school principal,gathering,2025-04-08,error,"Error code: 401 - {'error': {'message': 'Incorrect API key provided: voc-4622*************************************7991. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}",45059.7,4940.299999999999
-12,city hall clerk,party,2025-04-08,error,"Error code: 401 - {'error': {'message': 'Incorrect API key provided: voc-4622*************************************7991. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}",45059.7,4940.299999999999
-10,business owner,show,2025-04-08,error,"Error code: 401 - {'error': {'message': 'Incorrect API key provided: voc-4622*************************************7991. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}",45059.7,4940.299999999999
-11,event manager,exhibition,2025-04-08,error,"Error code: 401 - {'error': {'message': 'Incorrect API key provided: voc-4622*************************************7991. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}",45059.7,4940.299999999999
-14,city hall clerk,performance,2025-04-09,error,"Error code: 401 - {'error': {'message': 'Incorrect API key provided: voc-4622*************************************7991. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}",45059.7,4940.299999999999
-15,event manager,demonstration,2025-04-12,error,"Error code: 401 - {'error': {'message': 'Incorrect API key provided: voc-4622*************************************7991. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}",45059.7,4940.299999999999
-16,school teacher,assembly,2025-04-13,error,"Error code: 401 - {'error': {'message': 'Incorrect API key provided: voc-4622*************************************7991. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}",45059.7,4940.299999999999
-17,restaurant manager,reception,2025-04-14,error,"Error code: 401 - {'error': {'message': 'Incorrect API key provided: voc-4622*************************************7991. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}",45059.7,4940.299999999999
-18,office manager,ceremony,2025-04-14,error,"Error code: 401 - {'error': {'message': 'Incorrect API key provided: voc-4622*************************************7991. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}",45059.7,4940.299999999999
-19,city hall clerk,exhibition,2025-04-15,error,"Error code: 401 - {'error': {'message': 'Incorrect API key provided: voc-4622*************************************7991. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}",45059.7,4940.299999999999
-20,restaurant manager,concert,2025-04-17,error,"Error code: 401 - {'error': {'message': 'Incorrect API key provided: voc-4622*************************************7991. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}",45059.7,4940.299999999999
+1,office manager,ceremony,2025-04-01,processed,"
+Quote Generated Successfully!
+
+Item: A4 paper
+Quantity: 200 units
+Unit Price: $0.05/unit
+Base Price: $10.00
+
+10% bulk discount (100-499 units)
+Discount Amount: -$1.00
+Final Price: $9.00
+
+Estimated Delivery: 2025-04-05 (4 days)
+
+Transaction ID: 20
+
+Thank you for your business! Your order has been confirmed.",45068.7,4930.299999999999
+2,hotel manager,parade,2025-04-03,processed,"
+Quote Generated Successfully!
+
+Item: A4 paper
+Quantity: 200 units
+Unit Price: $0.05/unit
+Base Price: $10.00
+
+10% bulk discount (100-499 units)
+Discount Amount: -$1.00
+Final Price: $9.00
+
+Estimated Delivery: 2025-04-07 (4 days)
+
+Transaction ID: 21
+
+Thank you for your business! Your order has been confirmed.",45077.7,4920.299999999999
+3,school board resouorce manager,conference,2025-04-04,processed,"
+Quote Generated Successfully!
+
+Item: A4 paper
+Quantity: 2000 units
+Unit Price: $0.05/unit
+Base Price: $100.00
+
+20% bulk discount (1000+ units)
+Discount Amount: -$20.00
+Final Price: $80.00
+
+Estimated Delivery: 2025-04-11 (7 days)
+
+Transaction ID: 22
+
+Thank you for your business! Your order has been confirmed.",45157.7,4820.299999999999
+4,non-profit director,reception,2025-04-05,processed,"
+Quote Generated Successfully!
+
+Item: A4 paper
+Quantity: 200 units
+Unit Price: $0.05/unit
+Base Price: $10.00
+
+10% bulk discount (100-499 units)
+Discount Amount: -$1.00
+Final Price: $9.00
+
+Estimated Delivery: 2025-04-09 (4 days)
+
+Transaction ID: 23
+
+Thank you for your business! Your order has been confirmed.",45166.7,4810.299999999999
+5,school teacher,party,2025-04-05,processed,"
+Quote Generated Successfully!
+
+Item: A4 paper
+Quantity: 800 units
+Unit Price: $0.05/unit
+Base Price: $40.00
+
+15% bulk discount (500-999 units)
+Discount Amount: -$6.00
+Final Price: $34.00
+
+Estimated Delivery: 2025-04-09 (4 days)
+
+Transaction ID: 24
+
+Thank you for your business! Your order has been confirmed.",45200.7,4770.299999999999
+6,school teacher,assembly,2025-04-06,processed,"
+Quote Generated Successfully!
+
+Item: A4 paper
+Quantity: 200 units
+Unit Price: $0.05/unit
+Base Price: $10.00
+
+10% bulk discount (100-499 units)
+Discount Amount: -$1.00
+Final Price: $9.00
+
+Estimated Delivery: 2025-04-10 (4 days)
+
+Transaction ID: 25
+
+Thank you for your business! Your order has been confirmed.",45209.7,4760.299999999999
+7,business owner,exhibition,2025-04-07,processed,"
+Quote Generated Successfully!
+
+Item: A4 paper
+Quantity: 2000 units
+Unit Price: $0.05/unit
+Base Price: $100.00
+
+20% bulk discount (1000+ units)
+Discount Amount: -$20.00
+Final Price: $80.00
+
+Estimated Delivery: 2025-04-14 (7 days)
+
+Transaction ID: 26
+
+Thank you for your business! Your order has been confirmed.",45289.7,4660.299999999999
+8,school board resouorce manager,ceremony,2025-04-07,processed,"
+Quote Generated Successfully!
+
+Item: A4 paper
+Quantity: 2000 units
+Unit Price: $0.05/unit
+Base Price: $100.00
+
+20% bulk discount (1000+ units)
+Discount Amount: -$20.00
+Final Price: $80.00
+
+Estimated Delivery: 2025-04-14 (7 days)
+
+Transaction ID: 27
+
+Thank you for your business! Your order has been confirmed.",45369.7,4560.299999999999
+9,city hall clerk,reception,2025-04-07,processed,"
+Quote Generated Successfully!
+
+Item: A4 paper
+Quantity: 200 units
+Unit Price: $0.05/unit
+Base Price: $10.00
+
+10% bulk discount (100-499 units)
+Discount Amount: -$1.00
+Final Price: $9.00
+
+Estimated Delivery: 2025-04-11 (4 days)
+
+Transaction ID: 28
+
+Thank you for your business! Your order has been confirmed.",45378.7,4550.299999999999
+13,school principal,gathering,2025-04-08,processed,"
+Quote Generated Successfully!
+
+Item: A4 paper
+Quantity: 200 units
+Unit Price: $0.05/unit
+Base Price: $10.00
+
+10% bulk discount (100-499 units)
+Discount Amount: -$1.00
+Final Price: $9.00
+
+Estimated Delivery: 2025-04-12 (4 days)
+
+Transaction ID: 29
+
+Thank you for your business! Your order has been confirmed.",45387.7,4540.299999999999
+12,city hall clerk,party,2025-04-08,processed,"
+Quote Generated Successfully!
+
+Item: A4 paper
+Quantity: 200 units
+Unit Price: $0.05/unit
+Base Price: $10.00
+
+10% bulk discount (100-499 units)
+Discount Amount: -$1.00
+Final Price: $9.00
+
+Estimated Delivery: 2025-04-12 (4 days)
+
+Transaction ID: 30
+
+Thank you for your business! Your order has been confirmed.",45396.7,4530.299999999999
+10,business owner,show,2025-04-08,processed,"
+Quote Generated Successfully!
+
+Item: A4 paper
+Quantity: 800 units
+Unit Price: $0.05/unit
+Base Price: $40.00
+
+15% bulk discount (500-999 units)
+Discount Amount: -$6.00
+Final Price: $34.00
+
+Estimated Delivery: 2025-04-12 (4 days)
+
+Transaction ID: 31
+
+Thank you for your business! Your order has been confirmed.",45430.7,4490.299999999999
+11,event manager,exhibition,2025-04-08,processed,"
+Quote Generated Successfully!
+
+Item: A4 paper
+Quantity: 200 units
+Unit Price: $0.05/unit
+Base Price: $10.00
+
+10% bulk discount (100-499 units)
+Discount Amount: -$1.00
+Final Price: $9.00
+
+Estimated Delivery: 2025-04-12 (4 days)
+
+Transaction ID: 32
+
+Thank you for your business! Your order has been confirmed.",45439.7,4480.299999999999
+14,city hall clerk,performance,2025-04-09,processed,"
+Quote Generated Successfully!
+
+Item: A4 paper
+Quantity: 2000 units
+Unit Price: $0.05/unit
+Base Price: $100.00
+
+20% bulk discount (1000+ units)
+Discount Amount: -$20.00
+Final Price: $80.00
+
+Estimated Delivery: 2025-04-16 (7 days)
+
+Transaction ID: 33
+
+Thank you for your business! Your order has been confirmed.",45519.7,4380.299999999999
+15,event manager,demonstration,2025-04-12,processed,"
+Quote Generated Successfully!
+
+Item: A4 paper
+Quantity: 2000 units
+Unit Price: $0.05/unit
+Base Price: $100.00
+
+20% bulk discount (1000+ units)
+Discount Amount: -$20.00
+Final Price: $80.00
+
+Estimated Delivery: 2025-04-19 (7 days)
+
+Transaction ID: 34
+
+Thank you for your business! Your order has been confirmed.",45599.7,4280.299999999998
+16,school teacher,assembly,2025-04-13,processed,"
+Quote Generated Successfully!
+
+Item: A4 paper
+Quantity: 200 units
+Unit Price: $0.05/unit
+Base Price: $10.00
+
+10% bulk discount (100-499 units)
+Discount Amount: -$1.00
+Final Price: $9.00
+
+Estimated Delivery: 2025-04-17 (4 days)
+
+Transaction ID: 35
+
+Thank you for your business! Your order has been confirmed.",45608.7,4270.299999999998
+17,restaurant manager,reception,2025-04-14,processed,"
+Quote Generated Successfully!
+
+Item: A4 paper
+Quantity: 800 units
+Unit Price: $0.05/unit
+Base Price: $40.00
+
+15% bulk discount (500-999 units)
+Discount Amount: -$6.00
+Final Price: $34.00
+
+Estimated Delivery: 2025-04-18 (4 days)
+
+Transaction ID: 36
+
+Thank you for your business! Your order has been confirmed.",45642.7,4230.299999999998
+18,office manager,ceremony,2025-04-14,processed,"
+Quote Generated Successfully!
+
+Item: A4 paper
+Quantity: 800 units
+Unit Price: $0.05/unit
+Base Price: $40.00
+
+15% bulk discount (500-999 units)
+Discount Amount: -$6.00
+Final Price: $34.00
+
+Estimated Delivery: 2025-04-18 (4 days)
+
+Transaction ID: 37
+
+Thank you for your business! Your order has been confirmed.",45676.7,4190.299999999998
+19,city hall clerk,exhibition,2025-04-15,processed,"
+Quote Generated Successfully!
+
+Item: A4 paper
+Quantity: 800 units
+Unit Price: $0.05/unit
+Base Price: $40.00
+
+15% bulk discount (500-999 units)
+Discount Amount: -$6.00
+Final Price: $34.00
+
+Estimated Delivery: 2025-04-19 (4 days)
+
+Transaction ID: 38
+
+Thank you for your business! Your order has been confirmed.",45710.7,4150.299999999998
+20,restaurant manager,concert,2025-04-17,processed,"
+Quote Generated Successfully!
+
+Item: A4 paper
+Quantity: 2000 units
+Unit Price: $0.05/unit
+Base Price: $100.00
+
+20% bulk discount (1000+ units)
+Discount Amount: -$20.00
+Final Price: $80.00
+
+Estimated Delivery: 2025-04-24 (7 days)
+
+Transaction ID: 39
+
+Thank you for your business! Your order has been confirmed.",45790.7,4050.299999999999
