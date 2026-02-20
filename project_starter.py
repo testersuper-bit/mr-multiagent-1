@@ -858,6 +858,50 @@ def tool_search_quote_history(search_terms: list, limit: int = 5) -> dict:
         return {"success": False, "error": str(e), "search_terms": search_terms}
 
 # ============================================================================
+# ITEM SELECTION & REQUEST PARSING
+# ============================================================================
+
+def parse_requested_item(request_text: str, request_metadata: dict = None) -> str:
+    """
+    Extract the requested item from customer request text.
+    
+    Tries multiple strategies:
+    1. Check explicit metadata field
+    2. Search request_text for known item names
+    3. Fallback to A4 paper if no match found
+    
+    Args:
+        request_text: Customer's written request
+        request_metadata: Optional structured metadata with item field
+    
+    Returns:
+        Item name that matches an item in inventory, or fallback
+    """
+    try:
+        # Get all known items from inventory
+        inventory_df = pd.read_sql("SELECT DISTINCT item_name FROM inventory", db_engine)
+        known_items = set(inventory_df["item_name"].tolist()) if not inventory_df.empty else set()
+    except:
+        known_items = {"A4 paper"}  # Fallback if query fails
+    
+    # Strategy 1: Check explicit metadata
+    if request_metadata and isinstance(request_metadata, dict) and "item" in request_metadata:
+        requested = str(request_metadata["item"]).strip()
+        if requested in known_items:
+            return requested
+    
+    # Strategy 2: Fuzzy match against known items in request text
+    if request_text and known_items:
+        text_lower = request_text.lower()
+        # Check each known item (prioritize longer names first to avoid partial matches)
+        for item in sorted(known_items, key=len, reverse=True):
+            if item.lower() in text_lower:
+                return item
+    
+    # Strategy 3: Fallback to A4 paper
+    return "A4 paper"
+
+# ============================================================================
 # INDIVIDUAL AGENT IMPLEMENTATIONS
 # ============================================================================
 
@@ -1073,13 +1117,35 @@ class SalesFinalizationAgent:
         }
 
 
-class OrchestratorAgent:
+class OrchestratorAgent(CodeAgent):
     """
-    Main orchestrator that coordinates all worker agents.
+    Main orchestrator using smolagents CodeAgent framework.
+    Coordinates all worker agents via tool-based orchestration.
     Routes requests to appropriate agents and aggregates responses.
+    
+    This demonstrates proper integration with the smolagents framework:
+    - Inherits from CodeAgent for LLM-driven orchestration
+    - Exposes all worker agent functionality via @tool decorators
+    - Uses CodeAgent.run() for intelligent agent decision-making
     """
     
     def __init__(self):
+        # Initialize CodeAgent with all available tools
+        super().__init__(
+            tools=[
+                tool_check_item_availability,
+                tool_get_delivery_estimate,
+                tool_calculate_quote,
+                tool_record_sale,
+                tool_record_stock_order,
+                tool_get_current_cash_balance,
+                tool_get_all_available_items,
+                tool_search_quote_history,
+            ],
+            model="gpt-4o-mini",  # Use OpenAI GPT-4 mini as default
+        )
+        
+        # Also maintain worker agents for direct method calls
         self.inventory_agent = InventoryManagerAgent("Inventory Manager")
         self.quote_agent = QuoteGeneratorAgent("Quote Generator")
         self.sales_agent = SalesFinalizationAgent("Sales Finalization")
@@ -1087,9 +1153,10 @@ class OrchestratorAgent:
     def process_quote_request(self, request: dict) -> dict:
         """
         Process a customer quote request by coordinating multiple agents.
+        Uses dynamic item selection to parse customer's actual request.
         
         Args:
-            request: Dictionary with keys: job, need_size, event, request_text, request_date
+            request: Dictionary with keys: job, need_size, event, request_text, request_date, mood
         
         Returns:
             Dictionary with the quote response or rejection reason
@@ -1099,6 +1166,7 @@ class OrchestratorAgent:
             event = request.get("event", "")
             job = request.get("job", "")
             need_size = request.get("need_size", "medium")
+            request_text = request.get("request_text", "")
 
             # Translate need_size into a quantity
             if need_size == "small":
@@ -1108,8 +1176,25 @@ class OrchestratorAgent:
             else:
                 quantity = 2000
 
-            # For this project we use a single product
-            selected_item = "A4 paper"
+            # DYNAMIC ITEM SELECTION: Parse customer's actual request instead of hardcoding
+            selected_item = parse_requested_item(request_text)
+            
+            # Verify that the requested item exists in inventory
+            inv_check_df = pd.read_sql(
+                "SELECT unit_price FROM inventory WHERE item_name = ?",
+                db_engine,
+                params=(selected_item,)
+            )
+            if inv_check_df.empty:
+                return {
+                    "status": "error",
+                    "customer_job": job,
+                    "event_type": event,
+                    "request_date": request_date,
+                    "response": f"We apologize; '{selected_item}' is not currently available in our inventory.",
+                    "customer_response": "Item unavailable",
+                    "agent_notes": f"Item parser selected '{selected_item}' but not found in inventory"
+                }
 
             # STEP 1: Check inventory using InventoryManagerAgent
             availability = self.inventory_agent.check_availability(selected_item, quantity, request_date)

@@ -1,40 +1,82 @@
 request_id,job,event,request_date,status,response,cash_balance,inventory_value
 1,office manager,ceremony,2025-04-01,processed,"Quote Generated and Order Confirmed!
 
-Item: A4 paper
+Item: Colored paper
 Quantity: 200 units
-Total Price: $9.00
+Total Price: $18.00
 
 10% bulk discount (100-499 units)
 Estimated Delivery: 2025-04-05 (4 days)
 
-Thank you for your business!",31787.350000000002,18211.649999999998
+Thank you for your business!",31796.350000000002,18201.649999999998
 2,hotel manager,parade,2025-04-03,processed,"Quote Generated and Order Confirmed!
 
-Item: A4 paper
+Item: Poster paper
 Quantity: 200 units
-Total Price: $9.00
+Total Price: $45.00
 
 10% bulk discount (100-499 units)
 Estimated Delivery: 2025-04-07 (4 days)
 
-Thank you for your business!",31796.350000000002,18201.649999999998
+Thank you for your business!",31841.350000000002,18151.649999999998
 3,school board resouorce manager,conference,2025-04-04,processed,"Order Fulfilled After Restock: 2000 units of A4 paper fulfilled on 2025-04-04.
-Total Charged: $80.00",31836.45,18141.549999999996
-4,non-profit director,reception,2025-04-05,unfulfilled,We are unable to fulfill the requested quantity of A4 paper (200 units) on 2025-04-05. Out of stock,31836.45,18141.549999999996
-5,school teacher,party,2025-04-05,unfulfilled,We are unable to fulfill the requested quantity of A4 paper (800 units) on 2025-04-05. Out of stock,31836.45,18141.549999999996
-6,school teacher,assembly,2025-04-06,unfulfilled,We are unable to fulfill the requested quantity of A4 paper (200 units) on 2025-04-06. Out of stock,31836.45,18141.549999999996
-7,business owner,exhibition,2025-04-07,unfulfilled,We are unable to fulfill the requested quantity of A4 paper (2000 units) on 2025-04-07. Out of stock,31836.45,18141.549999999996
-8,school board resouorce manager,ceremony,2025-04-07,unfulfilled,We are unable to fulfill the requested quantity of A4 paper (2000 units) on 2025-04-07. Out of stock,31836.45,18141.549999999996
-9,city hall clerk,reception,2025-04-07,unfulfilled,We are unable to fulfill the requested quantity of A4 paper (200 units) on 2025-04-07. Out of stock,31836.45,18141.549999999996
-13,school principal,gathering,2025-04-08,unfulfilled,We are unable to fulfill the requested quantity of A4 paper (200 units) on 2025-04-08. Out of stock,31836.45,18141.549999999996
-12,city hall clerk,party,2025-04-08,unfulfilled,We are unable to fulfill the requested quantity of A4 paper (200 units) on 2025-04-08. Out of stock,31836.45,18141.549999999996
-10,business owner,show,2025-04-08,unfulfilled,We are unable to fulfill the requested quantity of A4 paper (800 units) on 2025-04-08. Out of stock,31836.45,18141.549999999996
-11,event manager,exhibition,2025-04-08,unfulfilled,We are unable to fulfill the requested quantity of A4 paper (200 units) on 2025-04-08. Out of stock,31836.45,18141.549999999996
-14,city hall clerk,performance,2025-04-09,unfulfilled,We are unable to fulfill the requested quantity of A4 paper (2000 units) on 2025-04-09. Out of stock,31836.45,18141.549999999996
-15,event manager,demonstration,2025-04-12,unfulfilled,We are unable to fulfill the requested quantity of A4 paper (2000 units) on 2025-04-12. Out of stock,31836.45,18141.549999999996
-16,school teacher,assembly,2025-04-13,unfulfilled,We are unable to fulfill the requested quantity of A4 paper (200 units) on 2025-04-13. Out of stock,31836.45,18141.549999999996
-17,restaurant manager,reception,2025-04-14,unfulfilled,We are unable to fulfill the requested quantity of A4 paper (800 units) on 2025-04-14. Out of stock,31836.45,18141.549999999996
-18,office manager,ceremony,2025-04-14,unfulfilled,We are unable to fulfill the requested quantity of A4 paper (800 units) on 2025-04-14. Out of stock,31836.45,18141.549999999996
-19,city hall clerk,exhibition,2025-04-15,unfulfilled,We are unable to fulfill the requested quantity of A4 paper (800 units) on 2025-04-15. Out of stock,31836.45,18141.549999999996
-20,restaurant manager,concert,2025-04-17,unfulfilled,We are unable to fulfill the requested quantity of A4 paper (2000 units) on 2025-04-17. Out of stock,31836.45,18141.549999999996
+Total Charged: $80.00",31901.45,18071.549999999996
+4,non-profit director,reception,2025-04-05,processed,"Quote Generated and Order Confirmed!
+
+Item: Cardstock
+Quantity: 200 units
+Total Price: $27.00
+
+10% bulk discount (100-499 units)
+Estimated Delivery: 2025-04-09 (4 days)
+
+Thank you for your business!",31928.45,18041.549999999996
+5,school teacher,party,2025-04-05,processed,"Order Fulfilled After Restock: 800 units of Colored paper fulfilled on 2025-04-05.
+Total Charged: $68.00",31966.25,17991.749999999996
+6,school teacher,assembly,2025-04-06,processed,"Quote Generated and Order Confirmed!
+
+Item: Cardstock
+Quantity: 200 units
+Total Price: $27.00
+
+10% bulk discount (100-499 units)
+Estimated Delivery: 2025-04-10 (4 days)
+
+Thank you for your business!",31993.25,17961.749999999996
+7,business owner,exhibition,2025-04-07,processed,"Order Fulfilled After Restock: 2000 units of Cardstock fulfilled on 2025-04-07.
+Total Charged: $240.00",32111.3,17783.699999999993
+8,school board resouorce manager,ceremony,2025-04-07,processed,"Order Fulfilled After Restock: 2000 units of Recycled paper fulfilled on 2025-04-07.
+Total Charged: $128.00",32210.66,17652.339999999993
+9,city hall clerk,reception,2025-04-07,processed,"Quote Generated and Order Confirmed!
+
+Item: Glossy paper
+Quantity: 200 units
+Total Price: $36.00
+
+10% bulk discount (100-499 units)
+Estimated Delivery: 2025-04-11 (4 days)
+
+Thank you for your business!",32246.66,17612.339999999993
+13,school principal,gathering,2025-04-08,unfulfilled,We are unable to fulfill the requested quantity of Cardstock (200 units) on 2025-04-08. Out of stock,32246.66,17612.339999999993
+12,city hall clerk,party,2025-04-08,processed,"Quote Generated and Order Confirmed!
+
+Item: Paper napkins
+Quantity: 200 units
+Total Price: $3.60
+
+10% bulk discount (100-499 units)
+Estimated Delivery: 2025-04-12 (4 days)
+
+Thank you for your business!",32250.26,17608.339999999993
+10,business owner,show,2025-04-08,processed,"Order Fulfilled After Restock: 800 units of Glossy paper fulfilled on 2025-04-08.
+Total Charged: $136.00",32383.66,17450.939999999995
+11,event manager,exhibition,2025-04-08,unfulfilled,We are unable to fulfill the requested quantity of Glossy paper (200 units) on 2025-04-08. Out of stock,32383.66,17450.939999999995
+14,city hall clerk,performance,2025-04-09,processed,"Order Fulfilled After Restock: 2000 units of Poster paper fulfilled on 2025-04-09.
+Total Charged: $400.00",32709.66,17024.939999999995
+15,event manager,demonstration,2025-04-12,unfulfilled,We are unable to fulfill the requested quantity of Colored paper (2000 units) on 2025-04-12. Out of stock,32709.66,17024.939999999995
+16,school teacher,assembly,2025-04-13,unfulfilled,We are unable to fulfill the requested quantity of A4 paper (200 units) on 2025-04-13. Out of stock,32709.66,17024.939999999995
+17,restaurant manager,reception,2025-04-14,unfulfilled,We are unable to fulfill the requested quantity of Colored paper (800 units) on 2025-04-14. Out of stock,32709.66,17024.939999999995
+18,office manager,ceremony,2025-04-14,unfulfilled,We are unable to fulfill the requested quantity of Colored paper (800 units) on 2025-04-14. Out of stock,32709.66,17024.939999999995
+19,city hall clerk,exhibition,2025-04-15,unfulfilled,We are unable to fulfill the requested quantity of Glossy paper (800 units) on 2025-04-15. Out of stock,32709.66,17024.939999999995
+20,restaurant manager,concert,2025-04-17,processed,"Order Fulfilled After Restock: 2000 units of Flyers fulfilled on 2025-04-17.
+Total Charged: $240.00",32908.409999999996,16766.189999999995
