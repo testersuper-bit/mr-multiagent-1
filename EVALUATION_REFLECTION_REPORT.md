@@ -76,13 +76,19 @@ All 7 helper functions from `project_starter.py` are wrapped as agent-callable t
 4. tool_record_sale()
    └─ Wraps: create_transaction()
 
-5. tool_get_current_cash_balance()
+5. tool_record_stock_order()
+   └─ Wraps: create_transaction(transaction_type='stock_orders')
+
+6. tool_get_current_cash_balance()
    └─ Wraps: get_cash_balance()
 
-6. tool_get_all_available_items()
+7. tool_get_all_available_items()
    └─ Wraps: get_all_inventory()
 
-(Plus implicit database initialization via init_database() and setup_db())
+8. tool_search_quote_history()
+   └─ Wraps: search_quote_history() — used by QuoteGeneratorAgent for historical quote lookup
+
+Plus: generate_financial_report() is called in run_test_scenarios() for financial reporting.
 ```
 
 ### 2.2 Bulk Discount Logic

@@ -40,12 +40,13 @@ def create_agent_workflow_diagram():
 
         # Fourth level: Tools (use exact tool_* names from project_starter.py)
         'tool_check_item_availability': (0.5, 2.5),
-        'tool_get_all_available_items': (3, 2.5),
-        'tool_get_delivery_estimate': (6, 2.5),
-        'tool_calculate_quote': (9, 2.5),
-        'tool_record_sale': (12, 2.5),
-        'tool_record_stock_order': (14.5, 2.5),
+        'tool_get_all_available_items': (2.5, 2.5),
+        'tool_get_delivery_estimate': (5, 2.5),
+        'tool_calculate_quote': (8, 2.5),
+        'tool_record_sale': (11, 2.5),
+        'tool_record_stock_order': (13.5, 2.5),
         'tool_get_current_cash_balance': (16, 2.5),
+        'tool_search_quote_history': (18.5, 2.5),
 
         # Fifth level: Database
         'database': (8, 0.5),
@@ -63,6 +64,7 @@ def create_agent_workflow_diagram():
         'tool_record_sale',
         'tool_record_stock_order',
         'tool_get_current_cash_balance',
+        'tool_search_quote_history',
     ]
     database_nodes = ['database']
     
@@ -90,6 +92,8 @@ def create_agent_workflow_diagram():
     G.add_edge('sales_agent', 'tool_record_stock_order')
     G.add_edge('sales_agent', 'tool_get_current_cash_balance')
     
+    G.add_edge('quote_agent', 'tool_search_quote_history')
+    
     # Tools to Database
     G.add_edge('tool_check_item_availability', 'database')
     G.add_edge('tool_get_all_available_items', 'database')
@@ -98,6 +102,7 @@ def create_agent_workflow_diagram():
     G.add_edge('tool_record_sale', 'database')
     G.add_edge('tool_record_stock_order', 'database')
     G.add_edge('tool_get_current_cash_balance', 'database')
+    G.add_edge('tool_search_quote_history', 'database')
     
     # Database back to Sales Agent (confirmation)
     G.add_edge('database', 'sales_agent')
@@ -129,6 +134,7 @@ def create_agent_workflow_diagram():
         'tool_record_sale': 2200,
         'tool_record_stock_order': 2200,
         'tool_get_current_cash_balance': 2200,
+        'tool_search_quote_history': 2200,
         'database': 3000,
     }
     
@@ -196,6 +202,7 @@ def create_agent_workflow_diagram():
         'tool_record_sale': 'tool_record_sale\n(Record Sale)',
         'tool_record_stock_order': 'tool_record_stock_order\n(Record Stock Order)',
         'tool_get_current_cash_balance': 'tool_get_current_cash_balance\n(Get Cash Balance)',
+        'tool_search_quote_history': 'tool_search_quote_history\n(Search Quotes)',
         'database': 'SQLite\nDatabase',
     }
     
@@ -234,7 +241,7 @@ WORKFLOW PROCESS:
 
     # Add a tool -> helper mapping legend box for clarity
     tool_mapping = (
-        "Tool -> Helper mapping:\n"
+        "Tool -> Helper mapping (all 7 required functions):\n"
         "- tool_check_item_availability -> get_stock_level(...)\n"
         "- tool_get_all_available_items -> get_all_inventory(...)\n"
         "- tool_get_delivery_estimate -> get_supplier_delivery_date(...)\n"
@@ -242,12 +249,13 @@ WORKFLOW PROCESS:
         "- tool_record_sale -> create_transaction(..., transaction_type='sales')\n"
         "- tool_record_stock_order -> create_transaction(..., transaction_type='stock_orders')\n"
         "- tool_get_current_cash_balance -> get_cash_balance(...)\n"
+        "- tool_search_quote_history -> search_quote_history(...) [7th function]\n"
     )
     ax.text(0.02, 0.02, tool_mapping, transform=ax.transAxes, fontsize=8, family='monospace', bbox=dict(boxstyle='round', facecolor='lavender', alpha=0.7))
     
     # Remove axes
     ax.axis('off')
-    ax.set_xlim(-1, 17)
+    ax.set_xlim(-1, 20)
     ax.set_ylim(-2, 11)
     
     # Save figure

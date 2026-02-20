@@ -830,6 +830,33 @@ def tool_get_all_available_items(as_of_date: str) -> dict:
     except Exception as e:
         return {"error": str(e), "as_of_date": as_of_date}
 
+@tool
+def tool_search_quote_history(search_terms: list, limit: int = 5) -> dict:
+    """
+    Search historical quotes for patterns and pricing precedents.
+    
+    Useful for generating consistent and competitive quotes by referencing
+    past quotes that match customer request keywords.
+    
+    Args:
+        search_terms: List of search keywords to match against quote history
+        limit: Maximum number of results to return (default 5)
+    
+    Returns:
+        Dictionary with matching quote records and metadata
+    """
+    try:
+        results = search_quote_history(search_terms, limit=limit)
+        return {
+            "success": True,
+            "matches_found": len(results),
+            "results": results,
+            "search_terms": search_terms,
+            "limit": limit
+        }
+    except Exception as e:
+        return {"success": False, "error": str(e), "search_terms": search_terms}
+
 # ============================================================================
 # INDIVIDUAL AGENT IMPLEMENTATIONS
 # ============================================================================
@@ -993,6 +1020,14 @@ class QuoteGeneratorAgent:
             "estimated_delivery": delivery.get("estimated_delivery"),
             "lead_time_days": delivery.get("lead_time_days")
         }
+    
+    def search_historical_quotes(self, search_terms: list, limit: int = 5) -> dict:
+        """
+        Search historical quotes to inform pricing decisions and ensure consistency.
+        
+        Useful for finding similar past quotes as benchmarks for current pricing.
+        """
+        return tool_search_quote_history(search_terms, limit=limit)
 
 
 class SalesFinalizationAgent:
