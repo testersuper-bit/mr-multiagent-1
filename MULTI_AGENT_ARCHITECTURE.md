@@ -129,17 +129,19 @@ finalization = sales_agent.finalize_order("A4 paper", 800, 360.0, "2025-04-01")
 
 ---
 
-## Integration with Helper Functions
+## Integration with Helper Functions and Agent Tools
 
-Each agent leverages the 7 core helper functions:
+Agents access the same core helper functions via explicit tool wrappers. The mapping below shows the public tool name (used by agents) and the underlying helper function or DB access it relies on:
 
-1. **`get_all_inventory(date)`** - Used by Inventory Manager Agent
-2. **`get_stock_level(item_name, date)`** - Used by Inventory Manager Agent
-3. **`get_supplier_delivery_date(date, quantity)`** - Used by Quote Generator Agent
-4. **`get_cash_balance(date)`** - Used by Sales Finalization Agent
-5. **`create_transaction(...)`** - Used by Sales Finalization Agent
-6. **`init_database(engine)`** - Database initialization
-7. **`generate_sample_inventory(...)`** - Inventory generation
+- `tool_check_item_availability(item_name, requested_quantity, as_of_date)` → `get_stock_level(item_name, as_of_date)` (database-derived current stock)
+- `tool_get_all_available_items(as_of_date)` → `get_all_inventory(as_of_date)` (snapshot of positive-stock items)
+- `tool_get_delivery_estimate(requested_date, quantity)` → `get_supplier_delivery_date(requested_date, quantity)` (supplier lead-time logic)
+- `tool_calculate_quote(item_name, quantity, unit_price=None)` → pricing logic that reads `inventory` table (unit price) and applies discount tiers (same logic as `QuoteGeneratorAgent.generate_quote`)
+- `tool_record_sale(item_name, quantity, total_price, transaction_date)` → `create_transaction(..., transaction_type='sales', ...)`
+- `tool_record_stock_order(item_name, quantity, total_price, transaction_date)` → `create_transaction(..., transaction_type='stock_orders', ...)`
+- `tool_get_current_cash_balance(as_of_date)` → `get_cash_balance(as_of_date)` (cash computation from `transactions`)
+
+This explicit mapping ensures the orchestrator and agents use stable, testable tool interfaces while the helper functions continue to encapsulate DB and business-logic details.
 
 ---
 
@@ -161,11 +163,11 @@ This shared data store allows agents to:
 
 ## Testing & Verification
 
-### Test Results
+### Test Results (latest run)
 
 - **Total Requests Processed**: 20 (from `quote_requests_sample.csv`)
-- **Successful Quotes**: 20 (100% success rate)
-- **Cash Changes Recorded**: 20 (each request generates a transaction)
+- **Successful Quotes**: 3 (observed in the most recent deterministic test run)
+- **Cash Changes Recorded**: 3 (changes recorded when sales finalized)
 - **Output File**: `test_results.csv`
 
 ### Verification Criteria Met

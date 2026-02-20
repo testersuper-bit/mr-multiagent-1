@@ -29,23 +29,24 @@ def create_agent_workflow_diagram():
     pos = {
         # Top level: User/Request input
         'user': (8, 10),
-        
+
         # Second level: Orchestrator
         'orchestrator': (8, 8),
-        
+
         # Third level: Worker agents
         'inventory_agent': (2, 5),
         'quote_agent': (8, 5),
         'sales_agent': (14, 5),
-        
-        # Fourth level: Tools
-        'tool_check_availability': (1, 2.5),
-        'tool_get_delivery': (3, 2.5),
-        'tool_calculate_quote': (7, 2.5),
-        'tool_apply_discount': (9, 2.5),
-        'tool_record_sale': (13, 2.5),
-        'tool_update_balance': (15, 2.5),
-        
+
+        # Fourth level: Tools (use exact tool_* names from project_starter.py)
+        'tool_check_item_availability': (0.5, 2.5),
+        'tool_get_all_available_items': (3, 2.5),
+        'tool_get_delivery_estimate': (6, 2.5),
+        'tool_calculate_quote': (9, 2.5),
+        'tool_record_sale': (12, 2.5),
+        'tool_record_stock_order': (14.5, 2.5),
+        'tool_get_current_cash_balance': (16, 2.5),
+
         # Fifth level: Database
         'database': (8, 0.5),
     }
@@ -54,8 +55,15 @@ def create_agent_workflow_diagram():
     user_nodes = ['user']
     orchestrator_nodes = ['orchestrator']
     agent_nodes = ['inventory_agent', 'quote_agent', 'sales_agent']
-    tool_nodes = ['tool_check_availability', 'tool_get_delivery', 'tool_calculate_quote', 
-                  'tool_apply_discount', 'tool_record_sale', 'tool_update_balance']
+    tool_nodes = [
+        'tool_check_item_availability',
+        'tool_get_all_available_items',
+        'tool_get_delivery_estimate',
+        'tool_calculate_quote',
+        'tool_record_sale',
+        'tool_record_stock_order',
+        'tool_get_current_cash_balance',
+    ]
     database_nodes = ['database']
     
     # Add nodes to graph
@@ -72,21 +80,24 @@ def create_agent_workflow_diagram():
     G.add_edge('orchestrator', 'sales_agent')
     
     # Worker Agents to Tools
-    G.add_edge('inventory_agent', 'tool_check_availability')
-    G.add_edge('inventory_agent', 'tool_get_delivery')
-    
+    G.add_edge('inventory_agent', 'tool_check_item_availability')
+    G.add_edge('inventory_agent', 'tool_get_all_available_items')
+
+    G.add_edge('quote_agent', 'tool_get_delivery_estimate')
     G.add_edge('quote_agent', 'tool_calculate_quote')
-    G.add_edge('quote_agent', 'tool_apply_discount')
-    
+
     G.add_edge('sales_agent', 'tool_record_sale')
-    G.add_edge('sales_agent', 'tool_update_balance')
+    G.add_edge('sales_agent', 'tool_record_stock_order')
+    G.add_edge('sales_agent', 'tool_get_current_cash_balance')
     
     # Tools to Database
-    G.add_edge('tool_check_availability', 'database')
-    G.add_edge('tool_get_delivery', 'database')
+    G.add_edge('tool_check_item_availability', 'database')
+    G.add_edge('tool_get_all_available_items', 'database')
+    G.add_edge('tool_get_delivery_estimate', 'database')
     G.add_edge('tool_calculate_quote', 'database')
     G.add_edge('tool_record_sale', 'database')
-    G.add_edge('tool_update_balance', 'database')
+    G.add_edge('tool_record_stock_order', 'database')
+    G.add_edge('tool_get_current_cash_balance', 'database')
     
     # Database back to Sales Agent (confirmation)
     G.add_edge('database', 'sales_agent')
@@ -111,12 +122,13 @@ def create_agent_workflow_diagram():
         'inventory_agent': 3500,
         'quote_agent': 3500,
         'sales_agent': 3500,
-        'tool_check_availability': 2500,
-        'tool_get_delivery': 2500,
-        'tool_calculate_quote': 2500,
-        'tool_apply_discount': 2500,
-        'tool_record_sale': 2500,
-        'tool_update_balance': 2500,
+        'tool_check_item_availability': 2200,
+        'tool_get_all_available_items': 2200,
+        'tool_get_delivery_estimate': 2200,
+        'tool_calculate_quote': 2200,
+        'tool_record_sale': 2200,
+        'tool_record_stock_order': 2200,
+        'tool_get_current_cash_balance': 2200,
         'database': 3000,
     }
     
@@ -177,12 +189,13 @@ def create_agent_workflow_diagram():
         'inventory_agent': 'Inventory\nManager\nAgent',
         'quote_agent': 'Quote\nGenerator\nAgent',
         'sales_agent': 'Sales\nFinalization\nAgent',
-        'tool_check_availability': 'Check\nAvailability',
-        'tool_get_delivery': 'Get\nDelivery\nDate',
-        'tool_calculate_quote': 'Calculate\nQuote',
-        'tool_apply_discount': 'Apply\nDiscount',
-        'tool_record_sale': 'Record\nSale',
-        'tool_update_balance': 'Update\nBalance',
+        'tool_check_item_availability': 'tool_check_item_availability\n(Check Availability)',
+        'tool_get_all_available_items': 'tool_get_all_available_items\n(Get All Items)',
+        'tool_get_delivery_estimate': 'tool_get_delivery_estimate\n(Get Delivery Estimate)',
+        'tool_calculate_quote': 'tool_calculate_quote\n(Calculate Quote)',
+        'tool_record_sale': 'tool_record_sale\n(Record Sale)',
+        'tool_record_stock_order': 'tool_record_stock_order\n(Record Stock Order)',
+        'tool_get_current_cash_balance': 'tool_get_current_cash_balance\n(Get Cash Balance)',
         'database': 'SQLite\nDatabase',
     }
     
@@ -218,6 +231,19 @@ WORKFLOW PROCESS:
            verticalalignment='top',
            bbox=dict(boxstyle='round', facecolor='wheat', alpha=0.5),
            family='monospace')
+
+    # Add a tool -> helper mapping legend box for clarity
+    tool_mapping = (
+        "Tool -> Helper mapping:\n"
+        "- tool_check_item_availability -> get_stock_level(...)\n"
+        "- tool_get_all_available_items -> get_all_inventory(...)\n"
+        "- tool_get_delivery_estimate -> get_supplier_delivery_date(...)\n"
+        "- tool_calculate_quote -> inventory unit_price + discount logic\n"
+        "- tool_record_sale -> create_transaction(..., transaction_type='sales')\n"
+        "- tool_record_stock_order -> create_transaction(..., transaction_type='stock_orders')\n"
+        "- tool_get_current_cash_balance -> get_cash_balance(...)\n"
+    )
+    ax.text(0.02, 0.02, tool_mapping, transform=ax.transAxes, fontsize=8, family='monospace', bbox=dict(boxstyle='round', facecolor='lavender', alpha=0.7))
     
     # Remove axes
     ax.axis('off')

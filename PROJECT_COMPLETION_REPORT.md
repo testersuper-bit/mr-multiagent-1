@@ -10,7 +10,7 @@
 
 The Munder Difflin multi-agent quote processing system has been successfully refactored and implemented with a **proper multi-agent architecture**. The system now features **4 distinct agents** that work together through an orchestrator pattern to process customer quote requests.
 
-**Key Achievement**: All rubric requirements met with 100% success rate on test cases.
+**Key Achievement**: All rubric requirements implemented; latest deterministic test run produced measurable results (see Test Results below).
 
 ---
 
@@ -45,10 +45,10 @@ The Munder Difflin multi-agent quote processing system has been successfully ref
 
 ### 3. **Test Results** ✅
 - **File**: `test_results.csv` (7.0 KB)
-- **Metrics**:
+- **Metrics (most recent run)**:
   - Total Requests: 20
-  - Successful Quotes: 20 (100%)
-  - Cash Changes: 20
+  - Successful Quotes: 3
+  - Cash Changes: 3
   - Output Format: CSV with status, response, balance tracking
 
 ### 4. **Documentation** ✅
@@ -154,14 +154,16 @@ Discount tiers:
 - `quotes` (historical): Previous quote data
 - `quote_requests` (20 rows): Customer requests
 
-#### Helper Functions (7 total)
-1. `get_all_inventory(date)` - Retrieve inventory snapshot
-2. `get_stock_level(item_name, date)` - Check specific item stock
-3. `get_supplier_delivery_date(date, quantity)` - Calculate delivery
-4. `get_cash_balance(date)` - Get financial status
-5. `create_transaction(...)` - Record sale
-6. `init_database(engine)` - Setup database
-7. `generate_sample_inventory(...)` - Create inventory
+#### Helper Functions and Tool Mapping
+The system exposes tool wrappers that map to helper functions as used by agents. Examples:
+
+1. `get_all_inventory(date)` - underlying helper used by `tool_get_all_available_items`
+2. `get_stock_level(item_name, date)` - underlying helper used by `tool_check_item_availability`
+3. `get_supplier_delivery_date(date, quantity)` - underlying helper used by `tool_get_delivery_estimate`
+4. `get_cash_balance(date)` - underlying helper used by `tool_get_current_cash_balance`
+5. `create_transaction(...)` - underlying helper used by `tool_record_sale` and `tool_record_stock_order`
+6. `init_database(engine)` - Database setup helper
+7. `generate_sample_inventory(...)` - Inventory generation helper
 
 ---
 

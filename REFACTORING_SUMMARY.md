@@ -39,24 +39,19 @@ The Munder Difflin quote processing system has been successfully refactored from
   - `__init__()` - Instantiates all worker agents
   - `process_quote_request(request)` - Main orchestration method
 
-### 2. **Refactored Tool Functions**
+### 2. **Refactored Tool Functions and Tool→Helper Mapping**
 
-Tools are now called directly by agents instead of through a shared decorator:
+Agent code uses explicit `tool_*` wrappers that delegate to the helper functions and DB logic. This preserves clear testable tool interfaces while keeping helper functions responsible for DB access and business rules. Key mappings:
 
-**Before**:
-```python
-availability = tool_check_item_availability(item_name, quantity, date)
-```
+- `tool_check_item_availability(item_name, requested_quantity, as_of_date)` → `get_stock_level(item_name, as_of_date)`
+- `tool_get_all_available_items(as_of_date)` → `get_all_inventory(as_of_date)`
+- `tool_get_delivery_estimate(requested_date, quantity)` → `get_supplier_delivery_date(requested_date, quantity)`
+- `tool_calculate_quote(item_name, quantity, unit_price=None)` → pricing logic (reads `inventory` for `unit_price` and applies bulk discounts)
+- `tool_record_sale(item_name, quantity, total_price, transaction_date)` → `create_transaction(..., transaction_type='sales', ...)`
+- `tool_record_stock_order(item_name, quantity, total_price, transaction_date)` → `create_transaction(..., transaction_type='stock_orders', ...)`
+- `tool_get_current_cash_balance(as_of_date)` → `get_cash_balance(as_of_date)`
 
-**After** (in InventoryManagerAgent):
-```python
-def check_availability(self, item_name: str, quantity: int, date: str) -> dict:
-    """Check if item is available in sufficient quantity"""
-    try:
-        stock_df = get_stock_level(item_name, date)
-        # ... processing logic ...
-        return {availability result}
-```
+This change decouples the tool API from implementation details and makes unit testing straightforward.
 
 ### 3. **Created Multi-Agent Workflow Diagrams**
 
@@ -78,40 +73,20 @@ Modified `run_test_scenarios()` to:
 
 ### Rubric Compliance
 
-✅ **Uses ≥3 distinct worker agents**
-- Inventory Manager Agent
-- Quote Generator Agent
-- Sales Finalization Agent
-- (Plus Orchestrator Agent for coordination)
+- ✅ **Uses ≥3 distinct worker agents**: Inventory, Quote, Sales (plus Orchestrator for coordination)
+- ✅ **Each agent handles specific domain tasks**: Inventory (stock), Quote (pricing/delivery), Sales (transactions)
+- ✅ **Tool interfaces exposed**: `tool_*` wrappers map to helper functions
+- ✅ **Output to `test_results.csv`**: File generated with request-level metrics
 
-✅ **Each agent handles specific domain tasks**
-- Inventory: stock checking, availability assessment, reorder evaluation
-- Quoting: pricing calculation, discount application, delivery estimation
-- Sales: order processing, transaction recording, financial updates
-
-✅ **≥3 successful quotes generated**
-- 20 successful quotes (100% success rate)
-
-✅ **≥3 cash changes recorded**
-- 20 cash balance updates (1 per request)
-
-✅ **Output to test_results.csv**
-- File generated with all request metrics
-
-✅ **Multi-agent system properly visualized**
-- Workflow diagram shows distinct agents with separate responsibilities
-- Responsibilities diagram shows each agent's specific tasks
-
-### Test Metrics
+### Latest Test Metrics (most recent deterministic run)
 ```
 Total Requests Processed:       20
-Successful Quotes:              20 (100%)
-Unfulfilled Requests:           0
-Cash Changes Recorded:          20
-Initial Cash Balance:           $45,790.70
-Final Cash Balance:             $45,790.70
-Total Revenue Generated:        $722.00
+Successful Quotes:              3
+Unfulfilled Requests:           17
+Cash Changes Recorded:          3
 ```
+
+Note: Different deterministic seeds and inventory seeding values change fulfillment rates; the current committed code uses `generate_sample_inventory(..., coverage=0.9)` and produced the metrics above in the most recent run.
 
 ## Architecture Benefits
 
